@@ -10,7 +10,8 @@ A program where you can input major landmarks, rivers, and cities and it will th
 
 ## In a paragraph or more, detail your project. What will your software do? What features will it have? How will it be executed?
 
-hey bitch
+We will have a map of the US, and when a user inputs a major landmark, such as the Rocky Mountains, a turtle will draw out the landmark and then ask the user if they would like to add another. The user will essentially be able to draw out all the major landmarks and cities on the same map all together. 
+
 
 ## If planning to combine 1051's final project with another course's final project, with which other course? And which aspect(s) of your proposed project would relate to 1051, and which aspect(s) would relate to the other course?
 
