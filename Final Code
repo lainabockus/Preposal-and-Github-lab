@@ -1,0 +1,133 @@
+import turtle
+
+def map_setup():
+    
+    import tkinter
+    turtle.setup(1300, 700)  # set size of window to size of map
+
+    wn = turtle.Screen()
+    wn.title("United States Map")
+
+    
+    canvas = wn.getcanvas()
+    turtle.setworldcoordinates(-125, 23, -50, 67)  # set the coordinate system to match lat/long
+
+
+    #map_bg_img = tkinter.PhotoImage(file="images/map_picture.png")
+
+    
+    #canvas.create_image(-1175, -580, anchor=tkinter.NW, image=map_bg_img)
+
+    t = turtle.Turtle()
+    t.penup()
+    t.hideturtle()
+    wn.register_shape("images/New_map.gif")
+    t.shape("images/New_map.gif")
+   
+    t.goto(-87, 44)
+    t.pendown()
+    t.stamp()   
+    
+    #return (t, wn, map_bg_img)
+
+
+def mountain():
+    map_setup()
+    m = turtle.Turtle()
+    mounts = {"Appa":0,"Rocky":6}
+    file_open = open("data/mountains2.csv", "r")
+    lines = file_open.readlines()
+    lat = []
+    lon = []
+    mount= input("Which mountain range would you like to see? Appa or Rocky")
+    
+    for text in lines[mounts[mount]:mounts[mount]+5]:
+        text = text.split(",")
+        lat = (float(text[0]))
+        lon = (float(text[1]))
+        m.penup()
+        m.hideturtle()
+        m.goto(lat, lon)
+        m.shape("triangle")
+        m.fillcolor("red")
+        m.left(90)
+        m.showturtle()
+        m.stamp()
+        m.hideturtle()
+        m.right(90)
+    m.write(mount, font=("Arial", 16, "normal"))
+        
+
+def city():
+    map_setup()
+    r = turtle.Turtle()
+    wn = turtle.Screen()
+    cities2 = {"NYC":1,"Chicago":3,"PHL":5,"Boston":7,"LA":9,"LV":11,"Houston":13,"Phoenix":15,"Charlotte":17,"Miami":19,"Dallas":21}
+    
+    file_open = open("data/Cities6.csv", "r")
+    lines = file_open.readlines()
+    lat = []
+    lon = []
+    city= input("What city would you like CodeCat to show you? PHL, LA, Houston, Phoenix, Charlotte, Miami")
+    for text in lines[cities2[city]:cities2[city]+1]:
+        text = text.split(",")
+        lat = (float(text[1]))
+        lon = (float(text[2]))
+   
+    r.penup()
+    r.hideturtle()
+    r.goto(lat, lon)
+    
+    wn.register_shape("images/codecat.gif")
+    r.shape("images/codecat.gif")
+    #r.shape("circle")
+    #r.fillcolor("cyan")
+    r.showturtle()
+    r.pendown()
+    r.write(city, font=("Arial", 16, "normal"))
+
+    
+def rivers():
+    map_setup()
+    m = turtle.Turtle()
+    m.penup()
+    rivs = {"Miss":1,"Deleware":13,"Missouri":7}
+    file_open = open("data/rivers.csv", "r")
+    lines = file_open.readlines()
+    lat = []
+    lon = []
+    riv= input("Which river would you like to see? Miss or Missouri")
+    
+    for text in lines[rivs[riv]:rivs[riv]+5]:
+        text = text.split(",")
+        lat = (float(text[0]))
+        lon = (float(text[1]))
+        m.hideturtle()
+        m.goto(lat, lon)
+        m.pencolor("blue")
+        m.pensize(10)
+        m.pendown()
+    m.write(riv, font=("Arial", 16, "normal"))
+ 
+
+
+def map():
+    #category = input("Which Category? Mountains, Cities or Rivers")
+    askAgain = True
+    while askAgain == True:
+        category = input("Which Category? Mountains, Cities or Rivers")
+        if category == "Mountains":    
+            mountain()
+        elif category == "Cities":
+            city()
+        elif category == "Rivers":
+            rivers()
+        ask = input("Would you like to play again? Y/YES/N/NO")
+        if ask == "N" or ask == "NO":
+            askAgain = False
+        elif ask == "Y" or ask == "YES":
+            askAgain = True
+            
+map()
+
+
